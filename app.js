@@ -1,3 +1,4 @@
+//Loading modules
 import express from "express";
 import fetch from "node-fetch";
 import dotenv from 'dotenv';
@@ -24,16 +25,18 @@ app.get('/search', async (req, res) => {
       return res.status(404).json({ message: 'Movie not found' });
     }
 
-    const movieId = data.results[0].id;
-    const urlId = `https://api.themoviedb.org/3/movie/${movieId}/similar?language=en-US&page=1&api_key=${apiKey}`;
+    const movieId = data.results[0].id; //getting movie ID
+    const urlId = `https://api.themoviedb.org/3/movie/${movieId}/similar?language=en-US&page=1&api_key=${apiKey}`; //search similar movies based on ID
     const responseSimilar = await fetch(urlId);
     const similarMovies = await responseSimilar.json();
 
+    //store movie + similar movie list
     const result = {
       movie: data.results[0],
       similarMovies: similarMovies.results,
     };
 
+    //sending response
     res.json(result);
 
   } catch (error) {
