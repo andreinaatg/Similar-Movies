@@ -1,0 +1,42 @@
+* {
+  padding: 0;
+  margin: 0;
+  font-family: "Martel Sans", sans-serif;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background: linear-gradient(to right, #1a1a1a, #3e3e3e);
+}
+body h1 {
+  color: white;
+}
+
+#similarMovies {
+  display: grid;
+  grid-template-rows: auto repeat(4, 1fr);
+  grid-template-columns: repeat(4, 1fr);
+  color: white;
+  width: auto;
+  font-size: 0.9rem;
+}
+#similarMovies .main-movie {
+  grid-column: 2/5;
+  margin: 0 35% 0 0;
+  text-align: center;
+  margin-bottom: 20px;
+}
+#similarMovies .main-movie img {
+  width: auto;
+  height: 400px;
+}
+#similarMovies .movie {
+  text-align: center;
+}
+#similarMovies .movie img {
+  width: auto;
+  height: 350px;
+}/*# sourceMappingURL=style.css.map */

@@ -19,7 +19,7 @@ app.get('/search', async (req, res) => {
     const response = await fetch(url);  // Making an HTTP GET request to the TMDb API
     const data = await response.json(); // Parsing the response as JSON
 
-    // Check if there are no results or results array is empty
+    // Checking if there are no results or results array is empty
     if (!data.results || data.results.length === 0) {
       return res.status(404).json({ message: 'Movie not found' });
     }

@@ -1,0 +1,61 @@
+$font: "Martel Sans", sans-serif;
+$fontColor: white;
+$gradientColor1: #1a1a1a;
+$gradientColor2: #3e3e3e;
+
+@mixin flexCenter($direction, $content) {
+    display: flex;
+    justify-content: $content;
+    align-items: center;
+    flex-direction: $direction;
+}
+@mixin gradient($start, $end) {
+    background: linear-gradient(to right, $start, $end);
+}
+
+@mixin grid {
+    display: grid;
+    grid-template-rows: auto repeat(4, 1fr);
+    grid-template-columns: repeat(4, 1fr);
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    font-family: $font;
+}
+
+body {
+    @include flexCenter(column, center);
+    @include gradient($gradientColor1, $gradientColor2);
+    h1 {
+        color: $fontColor;
+    }
+}
+
+#similarMovies {
+    @include grid();
+    color: $fontColor;
+    width: auto;
+    font-size: .9rem;
+
+    .main-movie {
+        grid-column: 2 / 5;
+        margin: 0 35% 0 0;
+        text-align: center;
+        margin-bottom: 20px;
+
+        img {
+            width: auto;
+            height: 400px;
+        }
+    }
+
+    .movie {
+        text-align: center;
+        img {
+            width: auto;
+            height: 350px;
+        }
+    }
+}

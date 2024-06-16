@@ -21,7 +21,7 @@ async function similarMovies() {
         }
 
         const movieDiv = document.createElement("div");
-        movieDiv.classList.add("movie");
+        movieDiv.classList.add("main-movie");
 
         const title = document.createElement("h2");
         title.textContent = movie.title;
@@ -30,8 +30,13 @@ async function similarMovies() {
         poster.src = `https://image.tmdb.org/t/p/w500/${movie.poster_path}`;
         poster.alt = movie.title;
 
+        const header = document.createElement("h2")
+        header.classList.add("similar-header");
+        header.textContent = "Based on your search"
+
         movieDiv.appendChild(title);
         movieDiv.appendChild(poster);
+        movieDiv.appendChild(header)
         similarMoviesDiv.appendChild(movieDiv);
 
         if (similarMovies.length === 0) {
@@ -42,6 +47,7 @@ async function similarMovies() {
         similarMovies.forEach(similarMovie => {
             const similarMovieDiv = document.createElement("div");
             similarMovieDiv.classList.add("movie");
+
 
             const similarTitle = document.createElement("h2");
             similarTitle.textContent = similarMovie.title;
