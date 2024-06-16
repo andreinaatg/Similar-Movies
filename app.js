@@ -4,14 +4,17 @@ import fetch from "node-fetch";
 import dotenv from 'dotenv';
 import cors from "cors";
 
+// Loading variables from .env file
 dotenv.config();
 
+// Initializing Express app
 const app = express();
 const port = 5000;
 const apiKey = process.env.TMDB_API_KEY;
 
-app.use(cors());
+app.use(cors());// // Using CORS middleware to enable CORS
 
+// Endpoint for searching movies
 app.get('/search', async (req, res) => {
   const { movie } = req.query; // Extract movie name from query parameter
   const url = `https://api.themoviedb.org/3/search/movie?query=${movie}&include_adult=true&language=en-US&page=1&api_key=${apiKey}`;
@@ -27,7 +30,7 @@ app.get('/search', async (req, res) => {
 
     const movieId = data.results[0].id; //getting movie ID
     const urlId = `https://api.themoviedb.org/3/movie/${movieId}/similar?language=en-US&page=1&api_key=${apiKey}`; //search similar movies based on ID
-    const responseSimilar = await fetch(urlId);
+    const responseSimilar = await fetch(urlId); // Making an HTTP GET request to search for similar movies
     const similarMovies = await responseSimilar.json();
 
     //store movie + similar movie list
@@ -36,7 +39,7 @@ app.get('/search', async (req, res) => {
       similarMovies: similarMovies.results,
     };
 
-    //sending response
+    //sending response as json
     res.json(result);
 
   } catch (error) {
@@ -45,6 +48,7 @@ app.get('/search', async (req, res) => {
   }
 });
 
+// Start the server
 app.listen(port, () => {
   console.log(`Server listening on port ${port}`);
 });

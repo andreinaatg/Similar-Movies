@@ -10,10 +10,18 @@
     <title>Similar Movies</title>
 </head>
 <body>
-    <h1>Search Movies</h1>
-    <input type="text" id="input" placeholder="Search Movie">
-    <button id="search-btn">Search</button>
-    <div id="similarMovies"></div>
+        <h1>Search Movies</h1>
+        <input type="text" id="input" placeholder="Search Movie">
+        <button id="search-btn">Search</button>
+    <div id="similarMovies">
+        <div class="main-movie-container">
+            <!-- Main movie goes here -->
+        </div>
+        <h2 id="heading">Based on search</h2>
+        <div class="list-container">
+            <ul class="movie-list" id="list"></ul>
+        </div>
+    </div>
     <script src="index.js"></script>
 </body>
 </html>

@@ -9,34 +9,91 @@ body {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  background: linear-gradient(to right, #1a1a1a, #3e3e3e);
+  background: linear-gradient(to right, #1a1a1a, #b10d0d);
 }
 body h1 {
   color: white;
 }
+body #input {
+  outline: none;
+  width: 30%;
+  padding: 10px 15px;
+  border-radius: 35px;
+  border: none;
+}
+body #search-btn {
+  cursor: pointer;
+  border: none;
+  border-radius: 15px;
+  height: 40px;
+  width: 70px;
+  padding: 10px 15px;
+  text-align: center;
+  margin: 30px 0;
+  transition: all ease 0.4s;
+}
+body #search-btn:hover {
+  background: linear-gradient(to right, #b10d0d, #1a1a1a);
+  color: white;
+}
 
 #similarMovies {
-  display: grid;
-  grid-template-rows: auto repeat(4, 1fr);
-  grid-template-columns: repeat(4, 1fr);
   color: white;
-  width: auto;
+  width: 100%;
+  max-width: 1000px;
   font-size: 0.9rem;
+  margin-top: 20px;
 }
 #similarMovies .main-movie {
-  grid-column: 2/5;
-  margin: 0 35% 0 0;
+  cursor: pointer;
   text-align: center;
   margin-bottom: 20px;
+  transition: all 0.2s ease-in-out;
+}
+#similarMovies .main-movie:hover {
+  transform: scale(1.1);
 }
 #similarMovies .main-movie img {
   width: auto;
   height: 400px;
 }
-#similarMovies .movie {
-  text-align: center;
+#similarMovies .list-container {
+  position: relative;
+  width: 100%;
+  overflow-x: auto;
+  margin-bottom: 20px;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
 }
-#similarMovies .movie img {
-  width: auto;
-  height: 350px;
+#similarMovies .list-container .movie-list {
+  display: flex;
+  padding: 20px 0;
+  list-style: none;
+  transition: transform 0.5s ease;
+  scroll-snap-type: x mandatory;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+#similarMovies .list-container .movie-list .item {
+  cursor: pointer;
+  width: 250px;
+  margin: 0 10px;
+  text-align: center;
+  box-sizing: border-box;
+  scroll-snap-align: center;
+  transition: all 0.2s ease-in-out;
+}
+#similarMovies .list-container .movie-list .item:hover {
+  transform: scale(1.1);
+}
+#similarMovies .list-container .movie-list .item img {
+  width: 100%;
+  height: 400px;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+#similarMovies #heading {
+  text-align: center;
+  font-size: 1.8rem;
+  display: none;
 }/*# sourceMappingURL=style.css.map */

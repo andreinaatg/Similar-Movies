@@ -1,7 +1,7 @@
 $font: "Martel Sans", sans-serif;
 $fontColor: white;
 $gradientColor1: #1a1a1a;
-$gradientColor2: #3e3e3e;
+$gradientColor2: #b10d0d;
 
 @mixin flexCenter($direction, $content) {
     display: flex;
@@ -9,14 +9,15 @@ $gradientColor2: #3e3e3e;
     align-items: center;
     flex-direction: $direction;
 }
+
 @mixin gradient($start, $end) {
     background: linear-gradient(to right, $start, $end);
 }
 
-@mixin grid {
-    display: grid;
-    grid-template-rows: auto repeat(4, 1fr);
-    grid-template-columns: repeat(4, 1fr);
+@mixin hoverEffect {
+    &:hover {
+        transform: scale(1.1);
+    }
 }
 
 * {
@@ -28,22 +29,47 @@ $gradientColor2: #3e3e3e;
 body {
     @include flexCenter(column, center);
     @include gradient($gradientColor1, $gradientColor2);
+    
     h1 {
         color: $fontColor;
+    }
+    #input {
+        outline: none;
+        width: 30%;
+        padding: 10px 15px;
+        border-radius: 35px;
+        border: none;
+    }
+    #search-btn{
+        cursor: pointer;
+        border: none;
+        border-radius: 15px;
+        height: 40px;
+        width: 70px;
+        padding: 10px 15px;
+        text-align: center;
+        margin: 30px 0;
+        transition: all ease 0.4s;
+        &:hover{
+        @include gradient($gradientColor2, $gradientColor1);
+        color: $fontColor;
+        }
     }
 }
 
 #similarMovies {
-    @include grid();
     color: $fontColor;
-    width: auto;
+    width: 100%; // Adjust as needed
+    max-width: 1000px; // Set a max-width to prevent overflowing on larger screens
     font-size: .9rem;
+    margin-top: 20px;
 
     .main-movie {
-        grid-column: 2 / 5;
-        margin: 0 35% 0 0;
+        cursor: pointer;
         text-align: center;
         margin-bottom: 20px;
+        transition: all .2s ease-in-out; 
+        @include hoverEffect; // Include the hover effect mixin
 
         img {
             width: auto;
@@ -51,11 +77,43 @@ body {
         }
     }
 
-    .movie {
+    .list-container {
+        position: relative;
+        width: 100%; 
+        overflow-x: auto; 
+        margin-bottom: 20px; 
+        scroll-snap-type: x mandatory; 
+        scrollbar-width: none;
+
+        .movie-list {
+            display: flex;
+            padding: 20px 0; 
+            list-style: none;
+            transition: transform 0.5s ease; 
+            scroll-snap-type: x mandatory; 
+            width: fit-content; 
+
+            .item {
+                cursor: pointer;
+                width: 250px; 
+                margin: 0 10px;
+                text-align: center;
+                box-sizing: border-box;
+                scroll-snap-align: center;
+                transition: all .2s ease-in-out; 
+                @include hoverEffect; // Include the hover effect mixin
+                
+                img {
+                    width: 100%;
+                    height: 400px;
+                    object-fit: contain;
+                }
+            }
+        }    
+    }
+    #heading {
         text-align: center;
-        img {
-            width: auto;
-            height: 350px;
-        }
+        font-size: 1.8rem;
+        display: none;
     }
 }
