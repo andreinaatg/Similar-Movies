@@ -8,7 +8,7 @@ async function similarMovies() {
         const input = document.getElementById("input").value;
 
         // Fetch data from the server
-        const response = await fetch(`http://localhost:5000/search?movie=${input}`);
+        const response = await fetch(`http://localhost:4001/search?movie=${input}`);
         
         // Check if the response is successful
         if (!response.ok) {

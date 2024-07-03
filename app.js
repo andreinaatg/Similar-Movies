@@ -9,7 +9,7 @@ dotenv.config();
 
 // Initializing Express app
 const app = express();
-const port = 5000;
+const port = 4001;
 const apiKey = process.env.TMDB_API_KEY;
 
 app.use(cors());// // Using CORS middleware to enable CORS
